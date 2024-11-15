@@ -8,6 +8,7 @@ public class MainApp {
 
         // Initialize the view (Swing-based GUI)
         SwingView view = new SwingView();
+        view.createAndShowGUI();
 
         // Initialize the controller with the model and view
         ReservationController controller = new ReservationController(seatTree, view);
@@ -17,6 +18,7 @@ public class MainApp {
 
         // Start processing CSV or handle user inputs via the controller
         // TODO - Fix This
+        String csvFilePath = "path/to/your/csvfile.csv";
         controller.processCSV("path/to/your/csvfile.csv");
     }
 }

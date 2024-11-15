@@ -68,4 +68,9 @@ public class CowboySeatTree extends RedBlackTree<SeatAssignment> {
 
     }
 
+    public SeatAssignment findReservation(String name) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findReservation'");
+    }
+
 }
