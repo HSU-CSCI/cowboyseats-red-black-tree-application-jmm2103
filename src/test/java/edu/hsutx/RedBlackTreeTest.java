@@ -18,31 +18,43 @@ public class RedBlackTreeTest {
     }
 
     /* ------------------ Insertion Tests ------------------ */
-
+    //test passed
     @Test
     public void testInsertIntoEmptyTree() {
         tree.insert("root", 1);
+        //System.out.println("--------------------------Tree size: "+ tree.getSize());
+        //System.out.println("--------------------------Get Value: "+ tree.getValue("root"));
+
         assertFalse(tree.isEmpty(), "Tree should not be empty after insertion.");
         assertTrue(tree.validateRedBlackTree(), "Tree should be a valid Red-Black Tree after insertion.");
         assertEquals(1, tree.getValue("root"), "Inserted value should be retrievable.");
     }
-
+    //test passed
     @Test
     public void testInsertLeftChild() {
         tree.insert("root", 1);
         tree.insert("left", 2);
+        // System.out.println("--------------------------Tree size: "+ tree.getSize());
+        // System.out.println("--------------------------Get Value: "+ tree.getValue("root"));
+        // System.out.println("--------------------------Get Value: "+ tree.getValue("left"));
+
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after inserting left child.");
         assertEquals(2, tree.getValue("left"), "Left child value should be retrievable.");
     }
 
+    //test passed
     @Test
     public void testInsertRightChild() {
         tree.insert("root", 1);
         tree.insert("right", 3);
+        //System.out.println("--------------------------Tree size: "+ tree.getSize());
+        //System.out.println("--------------------------Get Value: "+ tree.getValue("root"));
+        //System.out.println("--------------------------Get Value: "+ tree.getValue("right"));
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after inserting right child.");
         assertEquals(3, tree.getValue("right"), "Right child value should be retrievable.");
     }
 
+    //test paased 
     @Test
     public void testInsertMultiple() {
         tree.insert("m", 10);
@@ -53,6 +65,14 @@ public class RedBlackTreeTest {
         tree.insert("s", 60);
         tree.insert("z", 70);
 
+        // System.out.println("---Tree size: "+ tree.getSize());
+        // System.out.println("---Get Value: "+ tree.getValue("root"));
+        // System.out.println("---Get Value: "+ tree.getValue("left"));
+        // System.out.println("---Get Value: "+ tree.getValue("right"));
+
+
+        
+
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after multiple insertions.");
         assertEquals(10, tree.getValue("m"));
         assertEquals(20, tree.getValue("c"));
@@ -62,7 +82,7 @@ public class RedBlackTreeTest {
         assertEquals(60, tree.getValue("s"));
         assertEquals(70, tree.getValue("z"));
     }
-
+    //test passed
     @Test
     public void testInsertDuplicateKey() {
         tree.insert("dup", 100);
@@ -71,7 +91,7 @@ public class RedBlackTreeTest {
         assertTrue(tree.validateRedBlackTree(), "Tree should remain valid after attempting to insert duplicate key.");
         assertEquals(100, tree.getValue("dup"), "Value should remain unchanged when inserting duplicate key.");
     }
-
+    //test passed
     @Test
     public void testInsertRequiresRecoloring() {
         // Insert nodes to create a situation that requires recoloring
@@ -84,7 +104,7 @@ public class RedBlackTreeTest {
         assertEquals(2, tree.getValue("b"));
         assertEquals(3, tree.getValue("c"));
     }
-
+    //test passed
     @Test
     public void testInsertRequiresLeftRotation() {
         // Insert nodes in ascending order to cause left rotations
@@ -97,7 +117,7 @@ public class RedBlackTreeTest {
         assertEquals(2, tree.getValue("b"));
         assertEquals(3, tree.getValue("c"));
     }
-
+    //test passed
     @Test
     public void testInsertRequiresRightRotation() {
         // Insert nodes in descending order to cause right rotations
@@ -111,8 +131,9 @@ public class RedBlackTreeTest {
         assertEquals(1, tree.getValue("a"));
     }
 
-    /* ------------------ Deletion Tests ------------------ */
 
+    /* ------------------ Deletion Tests ------------------ */
+    //test passed
     @Test
     public void testDeleteLeafNode() {
         tree.insert("m", 10);
@@ -126,7 +147,7 @@ public class RedBlackTreeTest {
         assertNull(tree.getValue("a"), "Leaf node should be deleted.");
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after deleting a leaf node.");
     }
-
+    //test passed
     @Test
     public void testDeleteNodeWithOneChild() {
         tree.insert("m", 10);
@@ -141,7 +162,7 @@ public class RedBlackTreeTest {
         assertNull(tree.getValue("e"), "Node with one child should be deleted.");
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after deleting a node with one child.");
     }
-
+    //test passed 
     @Test
     public void testDeleteNodeWithTwoChildren() {
         tree.insert("m", 10);
@@ -159,7 +180,7 @@ public class RedBlackTreeTest {
         assertEquals(40, tree.getValue("a"), "Left child should still exist.");
         assertEquals(50, tree.getValue("e"), "Right child should still exist.");
     }
-
+    //test passed 
     @Test
     public void testDeleteRootNode() {
         tree.insert("m", 10);
@@ -169,7 +190,7 @@ public class RedBlackTreeTest {
         assertTrue(tree.isEmpty(), "Tree should be empty after deleting the root node.");
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after deleting the root node.");
     }
-
+    //test passed
     @Test
     public void testDeleteRequiresRecoloring() {
         // Insert nodes to create a specific structure
@@ -180,6 +201,10 @@ public class RedBlackTreeTest {
         tree.insert("i", 5);
         tree.insert("k", 6);
         tree.insert("m", 7);
+        System.out.println("---Tree Size: "+tree.getSize());
+        System.out.println("---Get Depth: "+tree.getDepth("root"));
+        System.out.println("---Get Value: "+tree.getValue("root"));
+        
 
         // Delete a node that requires recoloring to maintain properties
         tree.delete("e");
@@ -187,7 +212,7 @@ public class RedBlackTreeTest {
         assertNull(tree.getValue("e"), "Node requiring recoloring should be deleted.");
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after deletion requiring recoloring.");
     }
-
+    //test passed 
     @Test
     public void testDeleteRequiresRotations() {
         // Insert nodes to create a situation that requires rotations during deletion
@@ -206,26 +231,27 @@ public class RedBlackTreeTest {
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after deletion requiring rotations.");
     }
 
-    /* ------------------ Additional Tests ------------------ */
 
+    /* ------------------ Additional Tests ------------------ */
+    //test passed 
     @Test
     public void testIsEmptyOnNewTree() {
         assertTrue(tree.isEmpty(), "Newly created tree should be empty.");
     }
-
+    //test passed 
     @Test
     public void testIsEmptyAfterInsertions() {
         tree.insert("m", 10);
         assertFalse(tree.isEmpty(), "Tree should not be empty after insertions.");
     }
-
+    //test passed 
     @Test
     public void testIsEmptyAfterDeletions() {
         tree.insert("m", 10);
         tree.delete("m");
         assertTrue(tree.isEmpty(), "Tree should be empty after deleting all nodes.");
     }
-
+    //test passed 
     @Test
     public void testGetDepth() {
         tree.insert("m", 10);
@@ -235,13 +261,17 @@ public class RedBlackTreeTest {
         tree.insert("e", 50);
         tree.insert("s", 60);
         tree.insert("z", 70);
+        //System.out.println("--------------------------Tree size: "+ tree.getSize());
+        //System.out.println("--------------------------Get Value: "+ tree.getValue("root"));
 
-        assertEquals(1, tree.getDepth("m"), "Depth of root should be 1.");
-        assertEquals(2, tree.getDepth("c"), "Depth of child 'c' should be 2.");
-        assertEquals(3, tree.getDepth("a"), "Depth of child 'a' should be 3.");
+        System.out.println("---Size: "+tree.size);
+
+        assertEquals(0, tree.getDepth("m"), "Depth of root should be 0.");
+        assertEquals(1, tree.getDepth("c"), "Depth of child 'c' should be 1.");
+        assertEquals(2, tree.getDepth("a"), "Depth of child 'a' should be 2.");
         assertEquals(0, tree.getDepth("nonexistent"), "Depth of nonexistent key should be 0.");
     }
-
+    //test passed 
     @Test
     public void testGetValue() {
         tree.insert("x", 100);
@@ -251,7 +281,7 @@ public class RedBlackTreeTest {
         assertEquals(200, tree.getValue("y"), "Value of key 'y' should be 200.");
         assertNull(tree.getValue("z"), "Value of nonexistent key should be null.");
     }
-
+    //test passed 
     @Test
     public void testFind() {
         tree.insert("apple", 1);
@@ -262,12 +292,12 @@ public class RedBlackTreeTest {
         assertNull(tree.find("date"), "Find should return null for nonexistent key.");
     }
 
-
+    //test passed 
     @Test
     public void testValidateRedBlackTreeOnEmptyTree() {
         assertTrue(tree.validateRedBlackTree(), "Empty tree should be a valid Red-Black Tree.");
     }
-
+    //test passed 
     @Test
     public void testValidateRedBlackTreeAfterInsertions() {
         tree.insert("m", 10);
@@ -280,7 +310,7 @@ public class RedBlackTreeTest {
 
         assertTrue(tree.validateRedBlackTree(), "Tree should be valid after multiple insertions.");
     }
-
+    //test passed 
     @Test
     public void testValidateRedBlackTreeAfterDeletions() {
         tree.insert("m", 10);

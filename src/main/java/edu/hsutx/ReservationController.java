@@ -74,7 +74,8 @@ public class ReservationController {
 
                 } else if (command=='d') {
                     // delete a reservation
-                    // TODO - implement delete code
+                    deleteReservation(name);  // Call the delete method with the reservation name
+
                 }
 
             }
@@ -83,4 +84,27 @@ public class ReservationController {
         }
     }
 
+     /**
+     * Deletes a reservation for the given name.
+     * The method finds the seat block associated with the reservation and removes it.
+     * After deletion, the seat block is marked as unassigned, and the view is updated accordingly.
+     * 
+     * @param name The name of the person whose reservation is to be deleted
+     */
+    private void deleteReservation(String name) {
+        // Find the SeatAssignment object based on the reservation name
+        SeatAssignment reservationToDelete = seatTree.findReservation(name);
+
+        // If no reservation is found for the given name, print an error and return
+        if (reservationToDelete == null) {
+            System.out.println("Error deleting reservation for " + name + " -- reservation not found.");
+            return;
+        }
+
+        // Delete the reservation and update the seatTree
+        seatTree.delete(reservationToDelete);
+        view.updateStadiumVisualization(reservationToDelete.getSeatStartIndex(), reservationToDelete.getSeatQuantity(), false); // Mark seats as unassigned
+        view.updateTreeVisualization(seatTree); // Update the tree visualization after delete
+    }
 }
+
